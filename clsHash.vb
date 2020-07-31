@@ -5,7 +5,10 @@ Imports System.Management.Automation.Runspaces
 Public Class ClsHash
 	Public Function get_hash(filename As String, algorithm As String) As String
 
-		Dim vstrHash As String
+		Dim VstrHash As String
+		Dim VstrErr As String
+		VstrHash = ""
+		VstrErr = ""
 
 		' change cursor to busy
 		FrmHashes.Cursor = Cursors.WaitCursor
@@ -34,16 +37,21 @@ Public Class ClsHash
 		' if there is an error the result will contain 2 objects (lines)
 		' if there is no error the result will contain 3 objects (lines), the 2nd is the hash
 		If hashresults.Count = 2 Then
-			vstrHash = "The file is in use by another application. Please close it or choose another file and try again."
+			'build the error string and display in a message box
+			For Each obj As PSObject In hashresults
+				VstrErr &= (obj.ToString()) & vbCrLf
+			Next
+			MessageBox.Show(VstrErr, "# " & APPNAME, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
 		Else
-			vstrHash = hashresults(1).ToString()
+			'set the var to the hash
+			VstrHash = hashresults(1).ToString()
 		End If
 
 		' change cursor to normal when finished
 		FrmHashes.Cursor = Cursors.Default
 
-		' return the results of the script 
-		Return vstrHash
+		' return the hash 
+		Return VstrHash
 
 	End Function
 End Class

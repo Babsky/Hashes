@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Hashes 4 Windows 10")>
-<Assembly: AssemblyDescription("Calculates (using powershell) MD5, SHA256 and SHA512 file hashes. Includes the option to compare.")>
+<Assembly: AssemblyTitle(APPNAME)>
+<Assembly: AssemblyDescription("Calculates (using powershell) MD5, SHA256 and SHA512 file hashes. More algorithm options can be found at File>More. Includes the option to compare hashes.")>
 <Assembly: AssemblyCompany("BabsKy")>
-<Assembly: AssemblyProduct("Hashes 4 Windows 10")>
+<Assembly: AssemblyProduct(APPNAME)>
 <Assembly: AssemblyCopyright("Copyright ©  2020")>
 <Assembly: AssemblyTrademark("")>
 
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("0.2.2.1")>
+<Assembly: AssemblyFileVersion("0.2.2.1")>
 <Assembly: NeutralResourcesLanguage("en-GB")>

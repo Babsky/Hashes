@@ -1,6 +1,6 @@
 ﻿Public Class FrmHashes
 
-	Private vGFileName As String 'Global filename variable
+	Public vGFileName As String 'Global filename variable
 	Private vFileName As String  'filename variable
 	Private vstrMD5 As String    'Calculated MD5
 	Private vstrCMD5 As String   'MD5 to compare to
@@ -45,6 +45,9 @@
 		'Disable Reset until something has been done
 		ResetToolStripMenuItem.Enabled = False
 
+		'Disable 'More' until a file has been selected
+		MoreToolStripMenuItem.Enabled = False
+
 	End Sub
 
 	Private Sub Reset_Filename()
@@ -72,7 +75,7 @@
 		' Call ShowDialog.
 		Dim result As DialogResult = OpenFileDialog1.ShowDialog()
 
-		' Test result.
+		' Test if the OK button was clicked or a file was double clicked.
 		If result = Windows.Forms.DialogResult.OK Then
 			' Set the FileName variable to the selected file
 			vFileName = OpenFileDialog1.FileName
@@ -80,6 +83,7 @@
 			TxtFileName.Text = vFileName
 			vGFileName = vFileName
 			ResetToolStripMenuItem.Enabled = True
+			MoreToolStripMenuItem.Enabled = True
 		End If
 	End Sub
 
@@ -96,6 +100,7 @@
 			If (fileNames.Length > 0) Then
 				vFileName = fileNames
 				ResetToolStripMenuItem.Enabled = True
+				MoreToolStripMenuItem.Enabled = True
 			End If
 
 		End If
@@ -140,7 +145,7 @@
 	'*********************************** MD5*******************************************											
 	'**********************************************************************************
 	Private Sub BtnMD5_Click(sender As Object, e As EventArgs) Handles BtnMD5.Click
-		'Add code to generate MD5 
+		' generate MD5 
 		TxtMD5.Text = vClsHash.get_hash(vFileName, "MD5")
 	End Sub
 
@@ -152,6 +157,15 @@
 	Private Sub TxtCMD5_MouseClick(sender As Object, e As MouseEventArgs) Handles TxtCMD5.MouseClick
 		' clear the MD5 "compare to" textbox on mouseclick
 		TxtCMD5.Text = ""
+	End Sub
+	Private Sub TxtCMD5_DragEnter(sender As Object, e As DragEventArgs) Handles TxtCMD5.DragEnter
+		' Change the mouse pointer
+		e.Effect = DragDropEffects.All
+	End Sub
+
+	Private Sub TxtCMD5_DragDrop(sender As Object, e As DragEventArgs) Handles TxtCMD5.DragDrop
+		' Set the textbox text to the text being dropped
+		TxtCMD5.Text = e.Data.GetData(DataFormats.Text)
 	End Sub
 
 	Private Sub TxtCMD5_TextChanged(sender As Object, e As EventArgs) Handles TxtCMD5.TextChanged
@@ -199,7 +213,14 @@
 		' clear the SHA256 "compare to" textbox on mouseclick
 		TxtCSHA256.Text = ""
 	End Sub
-
+	Private Sub TxtCSHA256_DragEnter(sender As Object, e As DragEventArgs) Handles TxtCSHA256.DragEnter
+		' Change the mouse pointer
+		e.Effect = DragDropEffects.All
+	End Sub
+	Private Sub TxtCSHA256_DragDrop(sender As Object, e As DragEventArgs) Handles TxtCSHA256.DragDrop
+		' Set the textbox text to the text being dropped
+		TxtCSHA256.Text = e.Data.GetData(DataFormats.Text)
+	End Sub
 	Private Sub TxtCSHA256_TextChanged(sender As Object, e As EventArgs) Handles TxtCSHA256.TextChanged
 		vstrCSHA256 = TxtCSHA256.Text
 		If TxtCSHA256.Text <> "" And TxtCSHA256.Text <> "Paste or drag & drop MD5 here to compare" Then
@@ -254,7 +275,16 @@
 			TxtCSHA512.BackColor = Color.White
 		End If
 	End Sub
-
+	Private Sub TxtCSHA512_DragEnter(sender As Object, e As DragEventArgs) Handles TxtCSHA512.DragEnter
+		' Change the mouse pointer
+		e.Effect = DragDropEffects.All
+		' Set the textbox text to the text being dropped
+		'TxtCSHA512.Text = e.Data.GetData(DataFormats.Text)
+	End Sub
+	Private Sub TxtCSHA512_DragDrop(sender As Object, e As DragEventArgs) Handles TxtCSHA512.DragDrop
+		' Set the textbox text to the text being dropped
+		TxtCSHA512.Text = e.Data.GetData(DataFormats.Text)
+	End Sub
 	Private Sub TxtCSHA512_LostFocus(sender As Object, e As EventArgs) Handles TxtCSHA512.LostFocus
 		If TxtCSHA512.Text.Trim = "" Then
 			TxtCSHA512.Text = "Paste or drag & drop SHA512 here to compare"
@@ -281,6 +311,10 @@
 	Private Sub ResetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetToolStripMenuItem.Click
 		Reset_Form()
 	End Sub
+	Private Sub MoreToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoreToolStripMenuItem.Click
+		FrmMore.Show()
+	End Sub
+
 	Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
 		Me.Close()
 	End Sub

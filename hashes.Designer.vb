@@ -41,12 +41,14 @@ Partial Class FrmHashes
 		Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
 		Me.FIleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.ResetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+		Me.MoreToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
 		Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.TxtFileName = New System.Windows.Forms.TextBox()
-		Me.ResetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.MenuStrip1.SuspendLayout()
 		Me.SuspendLayout()
 		'
@@ -131,7 +133,7 @@ Partial Class FrmHashes
 		'TxtCMD5
 		'
 		Me.TxtCMD5.AllowDrop = True
-		Me.TxtCMD5.BackColor = System.Drawing.Color.White
+		Me.TxtCMD5.BackColor = System.Drawing.SystemColors.Window
 		Me.TxtCMD5.Location = New System.Drawing.Point(197, 164)
 		Me.TxtCMD5.Name = "TxtCMD5"
 		Me.TxtCMD5.Size = New System.Drawing.Size(757, 20)
@@ -182,7 +184,7 @@ Partial Class FrmHashes
 		'
 		'FIleToolStripMenuItem
 		'
-		Me.FIleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.ResetToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExitToolStripMenuItem})
+		Me.FIleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.ResetToolStripMenuItem, Me.ToolStripMenuItem1, Me.MoreToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExitToolStripMenuItem})
 		Me.FIleToolStripMenuItem.Name = "FIleToolStripMenuItem"
 		Me.FIleToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
 		Me.FIleToolStripMenuItem.Text = "FIle"
@@ -190,18 +192,35 @@ Partial Class FrmHashes
 		'OpenToolStripMenuItem
 		'
 		Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-		Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-		Me.OpenToolStripMenuItem.Text = "Browse"
+		Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+		Me.OpenToolStripMenuItem.Text = "Browse for file..."
+		'
+		'ResetToolStripMenuItem
+		'
+		Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
+		Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+		Me.ResetToolStripMenuItem.Text = "Reset"
 		'
 		'ToolStripMenuItem1
 		'
 		Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-		Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
+		Me.ToolStripMenuItem1.Size = New System.Drawing.Size(155, 6)
+		'
+		'MoreToolStripMenuItem
+		'
+		Me.MoreToolStripMenuItem.Name = "MoreToolStripMenuItem"
+		Me.MoreToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+		Me.MoreToolStripMenuItem.Text = "More"
+		'
+		'ToolStripMenuItem2
+		'
+		Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+		Me.ToolStripMenuItem2.Size = New System.Drawing.Size(155, 6)
 		'
 		'ExitToolStripMenuItem
 		'
 		Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-		Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+		Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
 		Me.ExitToolStripMenuItem.Text = "Exit"
 		'
 		'HelpToolStripMenuItem
@@ -227,12 +246,6 @@ Partial Class FrmHashes
 		Me.TxtFileName.TabIndex = 15
 		Me.TxtFileName.WordWrap = False
 		'
-		'ResetToolStripMenuItem
-		'
-		Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
-		Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-		Me.ResetToolStripMenuItem.Text = "Reset"
-		'
 		'FrmHashes
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -254,6 +267,7 @@ Partial Class FrmHashes
 		Me.Controls.Add(Me.BtnSHA256)
 		Me.Controls.Add(Me.BtnMD5)
 		Me.Controls.Add(Me.MenuStrip1)
+		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.MaximizeBox = False
 		Me.Name = "FrmHashes"
@@ -289,4 +303,6 @@ Partial Class FrmHashes
 	Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
 	Friend WithEvents ResetToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents MoreToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
 End Class
